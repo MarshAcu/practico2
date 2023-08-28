@@ -8,10 +8,15 @@ const nameValidation = () => {
 
     const playerName = document.getElementById('player').value;
     const gameOptions = document.getElementById('gameOptions');
+    const playButton = document.getElementById('playButton');
+    const resetButton = document.getElementById('resetButton');
     let score = document.getElementById('score');
     if(playerName.length > 0) {
         gameOptions.style.visibility = 'visible';
+        playButton.style.display = 'none';
+        resetButton.style.display = 'initial';
         score.innerHTML = `${playerName.toUpperCase()}: ${player_score} VS MAQUINA: ${pc_score}`;
+        //playButton.classList.add('disabled_button');
     } else {
         console.error('No se ingreso ningun player name');
         window.alert('Ingrese el nombre de el jugador');
@@ -22,17 +27,20 @@ const nameValidation = () => {
 const reset = () => {
     player_score = 0;
     pc_score = 0;
+    const playButton = document.getElementById('playButton');
+    const resetButton = document.getElementById('resetButton');
     document.getElementById('score').innerHTML = '';
     document.getElementById('player').value = '';
+    document.getElementById('finalResult').innerHTML = '';
     let gameOptions = document.getElementById('gameOptions');
     gameOptions.style.visibility = 'hidden';
+    playButton.style.display = 'initial';
+    resetButton.style.display = 'none';
 }
 
 const selectOption = (value) => {
     const randomMachinePlay = Math.floor(Math.random() * (3));
     const playerName = document.getElementById('player').value;
-    const playerResult = document.getElementById('player_result_label');
-    const machineResult = document.getElementById('machine_result_label');
     const gameOptions = document.getElementById('gameOptions');
     let score = document.getElementById('score');
     document.getElementById('player_result').src = `assets/images/${carts[value]}.png`;
@@ -40,26 +48,14 @@ const selectOption = (value) => {
 
     modal.style.display = 'block';
     if( value == randomMachinePlay) {
-        console.log('Empate');
-        playerResult.innerHTML = 'EMPATO'
-        playerResult.style.color = 'gray';
-        machineResult.innerHTML = 'EMPATO';
-        machineResult.style.color = 'gray';
+        setResults('Empato', 'gray','Empato', 'gray');
         return;
     }
    if(mod(value - randomMachinePlay, 3) < 3 / 2) {
-    console.log('GANA USUARIO');
-    playerResult.innerHTML = 'GANO'
-    playerResult.style.color = 'green';
-    machineResult.innerHTML = 'PERDIO';
-    machineResult.style.color = 'red';
+    setResults('GANO', '#BDDBB0', 'PERDIO', '#f77b72');
     player_score += 1;
    } else {
-    console.log('GANA PC');
-    playerResult.innerHTML = 'PERDIO';
-    playerResult.style.color = 'red';
-    machineResult.innerHTML = 'GANO';
-    machineResult.style.color = 'green';
+    setResults('PERDIO', '#f77b72', 'GANO', '#BDDBB0');
     pc_score += 1;
    }
    score.innerHTML = `${playerName.toUpperCase()}: ${player_score} VS MAQUINA: ${pc_score}`;
@@ -88,4 +84,14 @@ window.onclick = function(event) {
 // oculto el modal si se clickea en el span de close.
 span.onclick = function() {
    modal.style.display = "none";
+}
+
+// Setea los resultados y los estilos.
+const setResults = (playerResult, playerColor, machineResult, machineColor) => {
+    const player = document.getElementById('player_result_label');
+    const machine = document.getElementById('machine_result_label');
+    player.innerHTML = playerResult;
+    player.style.color = playerColor;
+    machine.innerHTML = machineResult;
+    machine.style.color = machineColor;
 }

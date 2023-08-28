@@ -48,6 +48,7 @@ button:hover {
     display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s;
+    display: none;
 }
 
 .clear_button:hover {
@@ -133,11 +134,17 @@ button:hover {
     align-items: flex-start;
     padding: 1em;
     border: #888 solid 1px;
+    border-radius: 16px;
     margin: 5% 5%;
   }
 
   .result_label {
     align-self: center;
-    font-family: 'Game Played Outline', sans-serif;
+    font-family: 'Game Played', sans-serif;
     font-size: x-large;
+  }
+
+  .disabled_button {
+    opacity: 0.6;
+    cursor: not-allowed;
   }

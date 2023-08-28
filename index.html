@@ -16,8 +16,8 @@
     una de las 3 opciones disponibles para intentar vencer a la Maquina.</p>
     
     <input type="text" id="player" required />
-    <button type="button" onclick="nameValidation()">JUGAR!</button>
-    <button type="button" class="clear_button" onclick="reset()">REINICIAR</button>
+    <button type="button" onclick="nameValidation()" id="playButton">JUGAR!</button>
+    <button type="button" class="clear_button" onclick="reset()" id="resetButton">REINICIAR</button>
 
     <h1 id="score" class="score"></h1>
 
@@ -39,7 +39,6 @@
     <div id="resultModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p>Resultados:</p>
             <div class="result">
                 <div class="box">
                     <span class="result_label">JUGADOR</span>
