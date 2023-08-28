@@ -1,5 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/headache');
 @import url('https://fonts.cdnfonts.com/css/score-board');
+@import url('https://fonts.cdnfonts.com/css/game-played-outline');
 
 body {
     font-family: 'Headache', sans-serif;
@@ -118,4 +119,25 @@ button:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1em;
+    border: #888 solid 1px;
+    margin: 5% 5%;
+  }
+
+  .result_label {
+    align-self: center;
+    font-family: 'Game Played Outline', sans-serif;
+    font-size: x-large;
   }

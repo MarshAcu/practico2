@@ -31,6 +31,8 @@ const reset = () => {
 const selectOption = (value) => {
     const randomMachinePlay = Math.floor(Math.random() * (3));
     const playerName = document.getElementById('player').value;
+    const playerResult = document.getElementById('player_result_label');
+    const machineResult = document.getElementById('machine_result_label');
     const gameOptions = document.getElementById('gameOptions');
     let score = document.getElementById('score');
     document.getElementById('player_result').src = `assets/images/${carts[value]}.png`;
@@ -39,16 +41,35 @@ const selectOption = (value) => {
     modal.style.display = 'block';
     if( value == randomMachinePlay) {
         console.log('Empate');
+        playerResult.innerHTML = 'EMPATO'
+        playerResult.style.color = 'gray';
+        machineResult.innerHTML = 'EMPATO';
+        machineResult.style.color = 'gray';
         return;
     }
    if(mod(value - randomMachinePlay, 3) < 3 / 2) {
     console.log('GANA USUARIO');
+    playerResult.innerHTML = 'GANO'
+    playerResult.style.color = 'green';
+    machineResult.innerHTML = 'PERDIO';
+    machineResult.style.color = 'red';
     player_score += 1;
    } else {
     console.log('GANA PC');
+    playerResult.innerHTML = 'PERDIO';
+    playerResult.style.color = 'red';
+    machineResult.innerHTML = 'GANO';
+    machineResult.style.color = 'green';
     pc_score += 1;
    }
    score.innerHTML = `${playerName.toUpperCase()}: ${player_score} VS MAQUINA: ${pc_score}`;
+   if(player_score == 3) {
+    gameOptions.style.visibility = 'hidden';
+    document.getElementById('finalResult').innerHTML = `EL GANADOR ES ${playerName}`;
+   } else if (pc_score == 3) {
+    gameOptions.style.visibility = 'hidden';
+    document.getElementById('finalResult').innerHTML = `EL GANADOR ES LA MAQUINA`;
+   }
 }
 
 // modulo de numeros negativos.

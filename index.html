@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.cdnfonts.com/css/headache" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/score-board" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/game-played-outline" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Game - Piedra, Papel o Tijera</title>
 </head>
@@ -20,6 +21,8 @@
 
     <h1 id="score" class="score"></h1>
 
+    <h1 id="finalResult"></h1>
+
     <div id="gameOptions" class="game_options">
 
         <div class="zoom" onclick="selectOption(0)">
@@ -33,20 +36,20 @@
         </div>
     </div>
 
-    <div id="result">
-
-    </div>
-
     <div id="resultModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <p>Resultados:</p>
-            <div class="">
-                <div>
+            <div class="result">
+                <div class="box">
+                    <span class="result_label">JUGADOR</span>
                     <img id="player_result" alt="player_result">
+                    <span class="result_label" id="player_result_label"></span>
                 </div>
-                <div>
+                <div class="box">
+                    <span class="result_label">MAQUINA</span>
                     <img id="machine_result" alt="machine_result">
+                    <span class="result_label" id="machine_result_label"></span>
                 </div>
             </div>
         </div>
