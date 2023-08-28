@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/headache" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/score-board" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Game - Piedra, Papel o Tijera</title>
+</head>
+<body>
+    
+    <h1>Piedra, Papel, Tijera!</h1>
+    <p>Para jugar ingrese un nombre y pulse en el boton <strong>JUGAR!</strong>, una vez hecho esto seleccione 
+    una de las 3 opciones disponibles para intentar vencer a la Maquina.</p>
+    
+    <input type="text" id="player" required />
+    <button type="button" onclick="nameValidation()">JUGAR!</button>
+    <button type="button" class="clear_button" onclick="reset()">REINICIAR</button>
+
+    <h1 id="score" class="score"></h1>
+
+    <div id="gameOptions" class="game_options">
+
+        <div class="zoom" onclick="selectOption(0)">
+            <img src="assets/images/Piedra.png" alt="Piedra">
+        </div>
+        <div class="zoom" onclick="selectOption(1)">
+            <img src="assets/images/Papel.png" alt="Papel">
+        </div>
+        <div class="zoom" onclick="selectOption(2)">
+            <img src="assets/images/Tijera.png" alt="Tijera">
+        </div>
+    </div>
+
+    <div id="result">
+
+    </div>
+
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Resultados:</p>
+            <div class="">
+                <div>
+                    <img id="player_result" alt="player_result">
+                </div>
+                <div>
+                    <img id="machine_result" alt="machine_result">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
