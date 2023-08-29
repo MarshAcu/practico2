@@ -4,6 +4,7 @@ const carts = ['Piedra', 'Papel', 'Tijera'];
 const modal = document.getElementById('resultModal');
 var span = document.getElementsByClassName("close")[0];
 
+// boton jugar, validacion de input e inicializacion del juego
 const nameValidation = () => {
 
     const playerName = document.getElementById('player').value;
@@ -16,7 +17,6 @@ const nameValidation = () => {
         playButton.style.display = 'none';
         resetButton.style.display = 'initial';
         score.innerHTML = `${playerName.toUpperCase()}: ${player_score} VS MAQUINA: ${pc_score}`;
-        //playButton.classList.add('disabled_button');
     } else {
         console.error('No se ingreso ningun player name');
         window.alert('Ingrese el nombre de el jugador');
@@ -24,6 +24,7 @@ const nameValidation = () => {
 
 }
 
+// resetea todos los elementos del juego
 const reset = () => {
     player_score = 0;
     pc_score = 0;
@@ -38,6 +39,7 @@ const reset = () => {
     resetButton.style.display = 'none';
 }
 
+// evento de seleccion de una carta (piedra, papel o tijera)
 const selectOption = (value) => {
     const randomMachinePlay = Math.floor(Math.random() * (3));
     const playerName = document.getElementById('player').value;
@@ -47,11 +49,13 @@ const selectOption = (value) => {
     document.getElementById('machine_result').src = `assets/images/${carts[randomMachinePlay]}.png`
 
     modal.style.display = 'block';
+    // si son iguales se empata
     if( value == randomMachinePlay) {
         setResults('Empato', 'gray','Empato', 'gray');
         return;
     }
-   if(mod(value - randomMachinePlay, 3) < 3 / 2) {
+    // al mod le paso la diferencia entre la mano del player(value) y la mano de la maquina, y la cantidad de opciones de seleccion disponibles (3)
+   if(mod(value - randomMachinePlay, carts.length) < carts.length / 2) {
     setResults('GANO', '#BDDBB0', 'PERDIO', '#f77b72');
     player_score += 1;
    } else {
@@ -61,7 +65,7 @@ const selectOption = (value) => {
    score.innerHTML = `${playerName.toUpperCase()}: ${player_score} VS MAQUINA: ${pc_score}`;
    if(player_score == 3) {
     gameOptions.style.visibility = 'hidden';
-    document.getElementById('finalResult').innerHTML = `EL GANADOR ES ${playerName}`;
+    document.getElementById('finalResult').innerHTML = `EL GANADOR ES ${playerName.toUpperCase()}`;
    } else if (pc_score == 3) {
     gameOptions.style.visibility = 'hidden';
     document.getElementById('finalResult').innerHTML = `EL GANADOR ES LA MAQUINA`;
